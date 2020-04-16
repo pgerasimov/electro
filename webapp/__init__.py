@@ -22,8 +22,7 @@ def create_app():
             total += i.summ
 
 
-
-        return render_template('base.html', active='index', form=form, data=all_data, total=total)
+        return render_template('base.html', active='index', form=form, data=all_data, total = total)
 
     @app.route('/get_data', methods=['POST'])
     def get_data():
@@ -53,8 +52,12 @@ def create_app():
 
         all_data = electro.query.all()
 
+        total = 0
+        for i in all_data:
+            total += i.summ
+
         flash('Показания добавлены')
 
-        return render_template('base.html', active='index', form=form, data=all_data)
+        return render_template('base.html', active='index', form=form, data=all_data,  total = total)
 
     return app
