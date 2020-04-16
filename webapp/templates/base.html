@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <title>Электричество</title>
+    <style>
+table {
+  border-collapse:collapse;
+  text-align: center;
+}
+
+
+
+  </style>
+      {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div style="color: green; font-weight:bold; font-size: 24px">
+        {% for message in messages %}
+            {{ message }}<br>
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endwith %}
+
+  </head>
+  <body>
+  <p style="font-weight:bold">Ввод показаний:</p>
+
+  <form action="{{ url_for('get_data') }}" method="post">
+  {{ form.hidden_tag() }}
+
+  <div class="form-group">
+    {{ form.T1.label }}<br>
+    {{ form.T1() }}
+  </div>
+    <br>
+      <div class="form-group">
+    {{ form.T2.label }}<br>
+    {{ form.T2() }}
+  </div>
+      <div>
+    {{ form.submit }}
+  </div>
+
+
+<br>
+
+<table border="1">
+<tbody>
+<tr>
+<td><b>Дата</b></td>
+<td><b>Значение Т1</b></td>
+<td><b>Знаение Т2</b></td>
+<td><b>Тариф Т1</b></td>
+<td><b>Тариф Т2</b></td>
+<td><b>Сумма</b></td>
+</tr>
+
+
+ {% for item in data %}
+
+<tr>
+<td>{{ item.date }}</td>
+<td>{{ item.t1 }}</td>
+<td>{{ item.t2 }}</td>
+<td>{{ item.tarif1 }}</td>
+<td>{{ item.tarif2 }}</td>
+<td>{{ item.summ }}</td>
+</tr>
+    {% endfor %}
+
+</tbody>
+</table>
+<p>
+  <strong>Итого потратил: {{ total }} руб.</strong></p>
+  </body>
+</html>
