@@ -1,6 +1,5 @@
 import datetime
 
-import pytz as pytz
 from flask import Flask, render_template, flash, redirect, url_for, request
 
 from webapp.forms import data
@@ -54,14 +53,8 @@ def create_app():
 
         all_data = electro.query.all()
 
-        total = 0
-        for i in all_data:
-            total += i.summ
-
         flash('Показания добавлены')
 
-
-
-        return render_template('base.html', active='index', form=form, data=all_data, total=total)
+        return render_template('base.html', active='index', form=form, data=all_data)
 
     return app
