@@ -43,6 +43,7 @@ def create_app():
         last_record_t2 = electro.query.filter_by(id=last_record_id)[0].t2
 
         price = ((t1_data - last_record_t1) * t1_tarif) + ((t2_data - last_record_t2) * t2_tarif)
+        round(price)
 
         new_record = electro(t1=t1_data, t2=t2_data, tarif1=t1_tarif, tarif2=t2_tarif, date=today, summ=price)
 
