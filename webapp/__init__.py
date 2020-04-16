@@ -30,7 +30,7 @@ def create_app():
     def get_data():
         form = data()
 
-        today = datetime.datetime.today().strftime("%m / %Y")
+        today = datetime.datetime.today().strftime("%d-%m-%Y")
 
         t1_tarif = 6.39
         t2_tarif = 2.41
