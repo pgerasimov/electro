@@ -56,6 +56,7 @@ def create_app():
         total = 0
         for i in all_data:
             total += i.summ
+        round(total)
 
         flash('Показания добавлены')
 

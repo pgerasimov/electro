@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <title>Электричество</title>
     <style>
 table {
@@ -34,12 +36,10 @@ table {
   {{ form.hidden_tag() }}
 
   <div class="form-group">
-    {{ form.T1.label }}<br>
     {{ form.T1() }}
   </div>
-    <br>
+
       <div class="form-group">
-    {{ form.T2.label }}<br>
     {{ form.T2() }}
   </div>
       <div>
@@ -49,32 +49,37 @@ table {
 
 <br>
 
-<table border="1">
-<tbody>
-<tr>
-<td><b>Дата</b></td>
-<td><b>Значение Т1</b></td>
-<td><b>Знаение Т2</b></td>
-<td><b>Тариф Т1</b></td>
-<td><b>Тариф Т2</b></td>
-<td><b>Сумма</b></td>
+<table class="table ">
+  <thead class="thead-dark">
+    <tr>
+<th scope="col"><b>Дата</b></th>
+<th scope="col"><b>Значение Т1</b></th>
+<th scope="col"><b>Знаение Т2</b></th>
+<th scope="col"><b>Тариф Т1</b></th>
+<th scope="col"><b>Тариф Т2</b></th>
+<th scope="col"><b>Сумма</b></th>
 </tr>
-
+ </tr>
+  </thead>
+  <tbody>
+    <tr>
 
  {% for item in data %}
 
-<tr>
-<td>{{ item.date }}</td>
-<td>{{ item.t1 }}</td>
-<td>{{ item.t2 }}</td>
-<td>{{ item.tarif1 }}</td>
-<td>{{ item.tarif2 }}</td>
-<td>{{ item.summ }}</td>
+      <tr>
+<td scope="row">{{ item.date }}</td>
+<td scope="col">{{ item.t1 }}</td>
+<td scope="col">{{ item.t2 }}</td>
+<td scope="col">{{ item.tarif1 }}</td>
+<td scope="col">{{ item.tarif2 }}</td>
+<td scope="col">{{ item.summ }}</td>
 </tr>
     {% endfor %}
 
 </tbody>
 </table>
+
+
 <p>
   <strong>Итого потратил: {{ total }} руб.</strong></p>
   </body>

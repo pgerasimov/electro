@@ -24,5 +24,5 @@ class data(FlaskForm):
     submit = SubmitField(
         'Отправить',
         render_kw={
-            "class": "btn btn-primary",
+            "class": "btn btn-outline-primary",
             "Type": "submit"})
