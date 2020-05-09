@@ -1,6 +1,6 @@
 import datetime
 
-from flask import Flask, render_template, flash, redirect, url_for, request
+from flask import Flask, render_template, flash
 
 from webapp.forms import data
 from webapp.model import db, electro
@@ -21,8 +21,7 @@ def create_app():
         for i in all_data:
             total += i.summ
 
-
-        return render_template('base.html', active='index', form=form, data=all_data, total = total)
+        return render_template('base.html', active='index', form=form, data=all_data, total=total)
 
     @app.route('/get_data', methods=['POST'])
     def get_data():
@@ -30,8 +29,8 @@ def create_app():
 
         today = datetime.datetime.today().strftime("%m / %Y")
 
-        t1_tarif = 6.39
-        t2_tarif = 2.41
+        t1_tarif = 6.65
+        t2_tarif = 2.51
 
         t1_data = int(form.T1.data)
         t2_data = int(form.T2.data)
@@ -60,6 +59,6 @@ def create_app():
 
         flash('Показания добавлены')
 
-        return render_template('base.html', active='index', form=form, data=all_data,  total = total)
+        return render_template('base.html', active='index', form=form, data=all_data, total=total)
 
     return app
