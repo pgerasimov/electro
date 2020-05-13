@@ -1,6 +1,4 @@
 import datetime
-
-import mpld3 as mpld3
 from flask import Flask, render_template, flash
 
 from webapp.forms import data
