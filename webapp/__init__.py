@@ -1,9 +1,12 @@
 import datetime
 
+import mpld3 as mpld3
 from flask import Flask, render_template, flash
 
 from webapp.forms import data
 from webapp.model import db, electro
+import matplotlib.pyplot as plt
+
 
 
 def create_app():
@@ -60,5 +63,28 @@ def create_app():
         flash('Показания добавлены')
 
         return render_template('base.html', active='index', form=form, data=all_data, total=total)
+
+    @app.route('/stat')
+    def get_stat():
+
+        data = electro.query.all()
+
+        month = ['04/20', '05/20', '06/20', '07/20']
+        kB = [184, 256, 597, 800]
+        rub = [2000, 3200, 4500, 6453]
+
+        plt.figure(figsize=(12, 5))
+
+        plt.subplot(131)
+        plt.plot(month, kB)
+        plt.suptitle('Расход в кВ / рублях')
+
+        plt.subplot(132)
+        plt.plot(month, rub)
+
+        plt.savefig('webapp/stat.png')
+        plt.close()
+
+        return render_template('base.html')
 
     return app
