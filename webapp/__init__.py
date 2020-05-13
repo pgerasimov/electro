@@ -80,7 +80,7 @@ def create_app():
         plt.subplot(132)
         plt.plot(month, rub)
 
-        plt.savefig('webapp/stat.png')
+        plt.savefig('../stat.png')
         plt.close()
 
         return render_template('base.html')
