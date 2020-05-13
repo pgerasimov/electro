@@ -1,9 +1,11 @@
 import datetime
-from flask import Flask, render_template, flash
 
+import matplotlib
+from flask import Flask, render_template, flash
 from webapp.forms import data
 from webapp.model import db, electro
 import matplotlib.pyplot as plt
+matplotlib.use('Agg')
 
 
 
@@ -81,7 +83,6 @@ def create_app():
         plt.plot(month, rub)
 
         plt.savefig('webapp/stat.png')
-        plt.close()
 
         return 'ok'
 
