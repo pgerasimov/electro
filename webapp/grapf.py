@@ -1,30 +1,38 @@
 import matplotlib.pyplot as plt
+import mpld3
+import pandas as pd
+
 
 def get_grapf(all_data):
 
-
-    month = []
-    kB = []
-    rub = []
+    rub_data = {}
+    kB_data = {}
 
     for item in all_data:
-        month.append(item.date)
-        kB.append(item.t1+item.t2)
-        rub.append(item.summ)
+
+        rub_data[item.date] = item.summ
+        kB_data[item.date] = item.t1 + item.t2
+
+    print(rub_data)
+    print(kB_data)
+
+    fig = plt.figure(figsize=(14, 5))
+    x1 = plt.subplot(321)
+    x1.title.set_text('Расход в кВ')
+    kB_plot = pd.Series(kB_data)
+    kB_plot.plot()
 
 
+    x2 = plt.subplot(322)
+    x2.title.set_text('Расход в рублях')
 
-    fig = plt.figure(figsize=(23, 5))
+    rub_plot = pd.Series(rub_data)
+    rub_plot.plot()
 
-    plt.subplot(131)
-    plt.plot(month, kB)
-
-    plt.subplot(132)
-    plt.plot(month, rub)
 
 
     fig.savefig('webapp/static/img/stat.png')
-    plt.close()
 
-    return 'ok'
+    fig_html = mpld3.fig_to_html(fig)
 
+    return fig_html

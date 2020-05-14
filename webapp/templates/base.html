@@ -86,8 +86,14 @@ body {
 
 <p>
   <strong>Итого потратил: {{ total }} руб.</strong></p>
+<div style="margin-left:-115px">
+      {{ context_var|safe }}
+{% autoescape off %}
+    {{ context_var }}
 
-       <img src="/static/img/stat.png" alt="histogram" style="margin-left: -290px">
+{{ plot }}
+{% endautoescape %}
+    </div>
 
   </body>
 

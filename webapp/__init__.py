@@ -1,5 +1,5 @@
 import datetime
-
+from html import unescape
 import matplotlib
 from flask import Flask, render_template, flash
 from webapp.forms import data
@@ -7,7 +7,6 @@ from webapp.grapf import get_grapf
 from webapp.model import db, electro
 
 matplotlib.use('Agg')
-
 
 
 def create_app():
@@ -21,13 +20,15 @@ def create_app():
         form = data()
         all_data = electro.query.all()
 
-        get_grapf(all_data)
+        plot = get_grapf(all_data)
 
         total = 0
         for i in all_data:
             total += i.summ
 
-        return render_template('base.html', active='index', form=form, data=all_data, total=total)
+        unescaped = unescape(plot)
+
+        return render_template('base.html', active='index', form=form, data=all_data, total=total, plot=unescaped)
 
     @app.route('/get_data', methods=['POST'])
     def get_data():
