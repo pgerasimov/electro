@@ -16,7 +16,7 @@ def get_grapf(all_data):
     print(rub_data)
     print(kB_data)
 
-    fig = plt.figure(figsize=(14, 5))
+    fig = plt.figure(figsize=(14, 10))
     x1 = plt.subplot(321)
     x1.title.set_text('Расход в кВ')
     kB_plot = pd.Series(kB_data)
