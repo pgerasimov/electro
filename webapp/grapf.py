@@ -4,15 +4,12 @@ import pandas as pd
 
 
 def get_grapf(all_data):
-
     rub_data = {}
     kB_data = {}
 
     for item in all_data:
-
         rub_data[item.date] = item.summ
         kB_data[item.date] = item.t1 + item.t2
-
 
     fig = plt.figure(figsize=(14, 10))
 
@@ -20,7 +17,6 @@ def get_grapf(all_data):
     x1.title.set_text('Расход в кВ')
     kB_plot = pd.Series(kB_data)
     kB_plot.plot()
-
 
     x2 = plt.subplot(322)
     x2.title.set_text('Расход в рублях')
