@@ -26,9 +26,12 @@ def create_app():
         for i in all_data:
             total += i.summ
 
+        avarege = total / len(all_data)
+
+
         unescaped = unescape(plot)
 
-        return render_template('base.html', active='index', form=form, data=all_data, total=total, plot=unescaped)
+        return render_template('base.html', active='index', form=form, data=all_data, total=total, plot=unescaped, avarege=avarege)
 
     @app.route('/get_data', methods=['POST'])
     def get_data():
