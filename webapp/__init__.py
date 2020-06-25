@@ -26,8 +26,11 @@ def create_app():
         for i in all_data:
             total += i.summ
 
+        round(total)
+
         avarege = total / len(all_data)
 
+        round(avarege)
 
         unescaped = unescape(plot)
 
@@ -68,10 +71,14 @@ def create_app():
             total += i.summ
         round(total)
 
+        avarege = total / len(all_data)
+
+        round(avarege)
+
         get_grapf(all_data)
 
         flash('Показания добавлены')
 
-        return render_template('base.html', active='index', form=form, data=all_data, total=total)
+        return render_template('base.html', active='index', form=form, data=all_data, total=total, avarege=avarege)
 
     return app
