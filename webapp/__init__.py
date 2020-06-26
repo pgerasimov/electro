@@ -30,7 +30,6 @@ def create_app():
 
         avarege = total / len(all_data)
 
-        round(avarege)
 
         unescaped = unescape(plot)
 
@@ -73,7 +72,6 @@ def create_app():
 
         avarege = total / len(all_data)
 
-        round(avarege)
 
         get_grapf(all_data)
 
