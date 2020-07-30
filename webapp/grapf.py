@@ -9,7 +9,12 @@ def get_grapf(all_data):
 
     for item in all_data:
         rub_data[item.date] = item.summ
-        kB_data[item.date] = item.t1 + item.t2
+
+    for i in range(len(all_data)):
+        if i == 0:
+            pass
+        else:
+            kB_data[all_data[i].date] = ((all_data[i].t1 + all_data[i].t2) - (all_data[i-1].t1 + all_data[i-1].t2))
 
     fig = plt.figure(figsize=(14, 10))
 
