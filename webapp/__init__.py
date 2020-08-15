@@ -26,14 +26,16 @@ def create_app():
         for i in all_data:
             total += i.summ
 
-        round(total)
+        total = round(total)
+        formated_total = '{0:,}'.format(total).replace(',', ' ')
 
         avarege = total / len(all_data)
-
+        avarege = round(avarege)
+        formated_avarege = '{0:,}'.format(avarege).replace(',', ' ')
 
         unescaped = unescape(plot)
 
-        return render_template('base.html', active='index', form=form, data=all_data, total=total, plot=unescaped, avarege=avarege)
+        return render_template('base.html', active='index', form=form, data=all_data, total=formated_total, plot=unescaped, avarege=formated_avarege)
 
     @app.route('/get_data', methods=['POST'])
     def get_data():
@@ -42,11 +44,11 @@ def create_app():
         today = datetime.datetime.today().strftime("%m / %Y")
         today = today[0:-2]
 
-        t1_tarif = 6.65
-        t2_tarif = 2.51
+        t1_tarif = 6.80
+        t2_tarif = 2.61
 
-        t1_data = int(form.T1.data)
-        t2_data = int(form.T2.data)
+        t1_data = round(int(form.T1.data))
+        t2_data = round(int(form.T2.data))
 
         all_records = electro.query.all()
         last_record_id = str(all_records[-1].id)
@@ -55,7 +57,6 @@ def create_app():
         last_record_t2 = electro.query.filter_by(id=last_record_id)[0].t2
 
         price = ((t1_data - last_record_t1) * t1_tarif) + ((t2_data - last_record_t2) * t2_tarif)
-        round(price)
 
         new_record = electro(t1=t1_data, t2=t2_data, tarif1=t1_tarif, tarif2=t2_tarif, date=today, summ=price)
 
@@ -68,15 +69,18 @@ def create_app():
         total = 0
         for i in all_data:
             total += i.summ
-        round(total)
+
+        total = round(total)
+        formated_total = '{0:,}'.format(total).replace(',', ' ')
 
         avarege = total / len(all_data)
-
+        avarege = round(avarege)
+        formated_avarege = '{0:,}'.format(avarege).replace(',', ' ')
 
         get_grapf(all_data)
 
         flash('Показания добавлены')
 
-        return render_template('base.html', active='index', form=form, data=all_data, total=total, avarege=avarege)
+        return render_template('base.html', active='index', form=form, data=all_data, total=formated_total, avarege=formated_avarege)
 
     return app
