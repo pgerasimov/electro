@@ -1,12 +1,7 @@
 import datetime
-from html import unescape
-import matplotlib
 from flask import Flask, render_template, flash
 from webapp.forms import data
-from webapp.grapf import get_grapf
 from webapp.model import db, electro
-
-matplotlib.use('Agg')
 
 
 def create_app():
@@ -20,8 +15,6 @@ def create_app():
         form = data()
         all_data = electro.query.all()
 
-        plot = get_grapf(all_data)
-
         total = 0
         for i in all_data:
             total += i.summ
@@ -33,9 +26,8 @@ def create_app():
         avarege = round(avarege)
         formated_avarege = '{0:,}'.format(avarege).replace(',', ' ')
 
-        unescaped = unescape(plot)
-
-        return render_template('base.html', active='index', form=form, data=all_data, total=formated_total, plot=unescaped, avarege=formated_avarege)
+        return render_template('base.html', active='index', form=form, data=all_data, total=formated_total,
+                               avarege=formated_avarege)
 
     @app.route('/get_data', methods=['POST'])
     def get_data():
@@ -77,10 +69,9 @@ def create_app():
         avarege = round(avarege)
         formated_avarege = '{0:,}'.format(avarege).replace(',', ' ')
 
-        get_grapf(all_data)
-
         flash('Показания добавлены')
 
-        return render_template('base.html', active='index', form=form, data=all_data, total=formated_total, avarege=formated_avarege)
+        return render_template('base.html', active='index', form=form, data=all_data, total=formated_total,
+                               avarege=formated_avarege)
 
     return app
