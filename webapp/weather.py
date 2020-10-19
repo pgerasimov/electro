@@ -22,15 +22,18 @@ def getdata(url):
 
     avg_temp = (round(day_temp + night_temp)) / 2
 
-    print(avg_temp)
+    return avg_temp
 
 
 # Month map
 
-month_map = {'1': 'january', '2': 'february', '3': 'march', '4': 'april', '5': 'may', '6': 'june', '7': 'july',
-             '8': 'august', '9': 'september', '10': 'october', '11': 'november', '12': 'december'}
+month_map = {'01': 'january', '02': 'february', '03': 'march', '04': 'april', '05': 'may', '06': 'june', '07': 'july',
+             '08': 'august', '09': 'september', '10': 'october', '11': 'november', '12': 'december'}
+temp_map = {}
+
 url = 'http://russia.pogoda360.ru/640764/'
 
 for i in month_map.items():
-    print(url + i[1])
-    getdata(url + i[1])
+    temp_map[i[0]] = getdata(url + i[1])
+
+
