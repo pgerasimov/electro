@@ -50,6 +50,9 @@ def create_app():
 
         price = ((t1_data - last_record_t1) * t1_tarif) + ((t2_data - last_record_t2) * t2_tarif)
 
+        price = round(price)
+        print(price)
+
         new_record = electro(t1=t1_data, t2=t2_data, tarif1=t1_tarif, tarif2=t2_tarif, date=today, summ=price)
 
         db.session.add(new_record)
