@@ -26,5 +26,4 @@ with app.app_context():
     db.session.add(new_record8)
     db.session.add(new_record9)
 
-
     db.session.commit()
