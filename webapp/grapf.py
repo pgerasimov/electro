@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import mpld3
 import pandas as pd
 
-from webapp.weather import temp_map
 
 
 def get_grapf(all_data):
