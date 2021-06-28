@@ -32,5 +32,8 @@ with app.app_context():
     db.session.add(new_record9)
     db.session.add(new_record10)
     db.session.add(new_record11)
+    db.session.add(new_record12)
+    db.session.add(new_record13)
+    db.session.add(new_record14)
 
     db.session.commit()
