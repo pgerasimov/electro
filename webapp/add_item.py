@@ -16,6 +16,9 @@ with app.app_context():
     new_record9 = electro(t1=9926, t2=5103, tarif1=6.8, tarif2=2.61, date='01/2021', summ=21035)
     new_record10 = electro(t1=11334, t2=5798, tarif1=6.8, tarif2=2.61, date='02/2021', summ=11390)
     new_record11 = electro(t1=12783, t2=6552, tarif1=6.8, tarif2=2.61, date='03/2021', summ=11821)
+    new_record12 = electro(t1=13621, t2=7063, tarif1=6.8, tarif2=2.61, date='04/2021', summ=7032)
+    new_record13 = electro(t1=14665, t2=7650, tarif1=6.8, tarif2=2.61, date='05/2021', summ=8631)
+    new_record14 = electro(t1=15209, t2=7946, tarif1=6.8, tarif2=2.61, date='06/2021', summ=4472)
 
     db.session.add(new_record)
     db.session.add(new_record1)
