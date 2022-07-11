@@ -1,0 +1,1 @@
+Simple Electricity price counter 
